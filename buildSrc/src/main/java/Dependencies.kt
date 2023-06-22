@@ -4,6 +4,10 @@ import org.gradle.api.JavaVersion
  * Dependencies for the project.
  */
 object Dependencies {
+    // Gradle
+    val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
+    val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.gradlePlugin}"
+
     // Kotlin
     val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:${Versions.kotlinBom}"
 

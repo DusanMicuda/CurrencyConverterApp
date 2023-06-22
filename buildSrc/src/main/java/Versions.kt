@@ -2,6 +2,10 @@
  * Version codes for app dependencies.
  */
 object Versions {
+    // Gradle
+    val gradle = "8.0.2"
+    val gradlePlugin = "1.8.21"
+
     // Kotlin
     val kotlinBom = "1.8.0"
 
@@ -11,7 +15,8 @@ object Versions {
     val activity = "1.5.1"
 
     // Jetpack Compose
-    val composeBom = "2022.10.00"
+    val composeCompiler = "1.4.7"
+    val composeBom = "2023.05.01"
 
     // Tests
     val jUnit = "4.13.2"
