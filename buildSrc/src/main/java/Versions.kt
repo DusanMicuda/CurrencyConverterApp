@@ -18,6 +18,10 @@ object Versions {
     val composeCompiler = "1.4.7"
     val composeBom = "2023.05.01"
 
+    // Ktor
+    val ktor = "2.3.1"
+    val logback = "1.4.8"
+
     // Tests
     val jUnit = "4.13.2"
     val jUnitExt = "1.1.5"

@@ -23,6 +23,13 @@ object Dependencies {
     val composePreview = "androidx.compose.ui:ui-tooling-preview"
     val materialDesign = "androidx.compose.material3:material3"
 
+    // Ktor
+    val ktorCore = "io.ktor:ktor-client-core:${Versions.ktor}"
+    val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    val ktorSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+    val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
+    val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
+
     // Tests
     val jUnit = "junit:junit:${Versions.jUnit}"
     val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"

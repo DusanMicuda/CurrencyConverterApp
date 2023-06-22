@@ -45,8 +45,13 @@ android {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 
-    packagingOptions {
-        resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    packaging {
+        resources.excludes.addAll(
+            listOf(
+                "/META-INF/{AL2.0,LGPL2.1}",
+                "META-INF/INDEX.LIST"
+            )
+        )
     }
 }
 
@@ -66,6 +71,13 @@ dependencies {
     implementation(Dependencies.composePreview)
     implementation(Dependencies.materialDesign)
 
+    // Ktor
+    implementation(Dependencies.ktorCore)
+    implementation(Dependencies.ktorAndroid)
+    implementation(Dependencies.ktorSerialization)
+    implementation(Dependencies.ktorLogging)
+    implementation(Dependencies.logback)
+
     // Tests
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.jUnitExt)
@@ -73,4 +85,3 @@ dependencies {
     androidTestImplementation(platform(Dependencies.composeBom))
     androidTestImplementation(Dependencies.composeTest)
 }
-
