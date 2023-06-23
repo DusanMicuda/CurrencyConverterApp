@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 android {
@@ -58,6 +59,7 @@ android {
 dependencies {
     // Kotlin
     implementation(platform(Dependencies.kotlinBom))
+    implementation(Dependencies.kotlinSerialization)
 
     // Android
     implementation(Dependencies.androidCore)

@@ -10,6 +10,8 @@ object Dependencies {
 
     // Kotlin
     val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:${Versions.kotlinBom}"
+    val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
+    val kotlinSerializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlinSerializationPlugin}"
 
     // Android
     val androidCore = "androidx.core:core-ktx:${Versions.androidCore}"
