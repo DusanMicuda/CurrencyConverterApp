@@ -30,7 +30,8 @@ object Dependencies {
     // Ktor
     val ktorCore = "io.ktor:ktor-client-core:${Versions.ktor}"
     val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
-    val ktorSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
+    val ktorContentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+    val ktorSerializationJson = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
     val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
 

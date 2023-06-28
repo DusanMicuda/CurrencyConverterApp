@@ -78,7 +78,8 @@ dependencies {
     // Ktor
     implementation(Dependencies.ktorCore)
     implementation(Dependencies.ktorAndroid)
-    implementation(Dependencies.ktorSerialization)
+    implementation(Dependencies.ktorContentNegotiation)
+    implementation(Dependencies.ktorSerializationJson)
     implementation(Dependencies.ktorLogging)
     implementation(Dependencies.logback)
 
