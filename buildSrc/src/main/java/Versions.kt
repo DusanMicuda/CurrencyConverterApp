@@ -23,7 +23,7 @@ object Versions {
 
     // Ktor
     val ktor = "2.3.1"
-    val logback = "1.4.8"
+    val logback = "1.3.8"
 
     // Tests
     val jUnit = "4.13.2"
