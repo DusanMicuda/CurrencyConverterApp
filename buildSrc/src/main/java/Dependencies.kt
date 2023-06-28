@@ -12,6 +12,8 @@ object Dependencies {
     val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:${Versions.kotlinBom}"
     val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     val kotlinSerializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlinSerializationPlugin}"
+    val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect"
+    val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
 
     // Android
     val androidCore = "androidx.core:core-ktx:${Versions.androidCore}"

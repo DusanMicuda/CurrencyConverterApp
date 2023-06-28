@@ -10,6 +10,7 @@ object Versions {
     val kotlinBom = "1.8.0"
     val kotlinSerialization = "1.5.1"
     val kotlinSerializationPlugin = "1.8.21"
+    val kotlinCoroutines = "1.7.1"
 
     // Android
     val androidCore = "1.8.0"
