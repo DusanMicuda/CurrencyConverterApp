@@ -11,6 +11,8 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import java.security.SecureRandom
 import javax.net.ssl.HostnameVerifier
@@ -47,9 +49,9 @@ class ApiCaller {
     suspend inline fun <reified T : Any> callResult(
         url: String,
         request: Any,
-    ): Result<T> {
+    ): Result<T> = withContext(Dispatchers.IO){
         var response: HttpResponse? = null
-        return try {
+        return@withContext try {
             response = client.get(url) {
                 url { parameters.appendAll(request) }
             }
