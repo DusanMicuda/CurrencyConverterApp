@@ -24,6 +24,7 @@ object Dependencies {
     val composeBom = "androidx.compose:compose-bom:${Versions.composeBom}"
     val composeUI = "androidx.compose.ui:ui"
     val composeGraphics = "androidx.compose.ui:ui-graphics"
+    val composeTooling = "androidx.compose.ui:ui-tooling"
     val composePreview = "androidx.compose.ui:ui-tooling-preview"
     val materialDesign = "androidx.compose.material3:material3"
 

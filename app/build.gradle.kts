@@ -71,6 +71,7 @@ dependencies {
     // Jetpack Compose
     implementation(platform(Dependencies.composeBom))
     implementation(Dependencies.composeUI)
+    implementation(Dependencies.composeTooling)
     implementation(Dependencies.composeGraphics)
     implementation(Dependencies.composePreview)
     implementation(Dependencies.materialDesign)
