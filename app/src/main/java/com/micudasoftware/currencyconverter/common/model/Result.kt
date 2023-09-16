@@ -23,3 +23,19 @@ sealed class Result<out T> {
 fun <T : Any> T.toSuccess(): Result<T> {
     return Result.Success(this)
 }
+
+/**
+ * Transforms a successful result of the [Result] by applying a [mapAction] function to it.
+ * If this result is an error, the same error is returned.
+ *
+ * @param T The type of the original [Result] success value.
+ * @param S The type of the mapped [Result] success value.
+ * @param mapAction A function to transform the success value of this result.
+ * @return A new [Result] instance with the transformed success value if this result is a success or the same error if this result is an error.
+ */
+inline fun <T, S> Result<T>.map(mapAction: (T) -> S): Result<S> {
+    return when (this) {
+        is Result.Success -> Result.Success(mapAction(this.data))
+        is Result.Error -> Result.Error()
+    }
+}
