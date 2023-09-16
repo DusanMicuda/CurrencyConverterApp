@@ -7,6 +7,7 @@ object Dependencies {
     // Gradle
     val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
     val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.gradlePlugin}"
+    val atomicfu = "org.jetbrains.kotlinx:atomicfu-gradle-plugin:${Versions.atomicfu}"
 
     // Kotlin
     val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:${Versions.kotlinBom}"
@@ -51,8 +52,8 @@ object Android {
     const val applicationId = "com.micudasoftware.currencyconverter"
 
     const val minSdk = 26
-    const val targetSdk = 33
-    const val compileSdk = 33
+    const val targetSdk = 34
+    const val compileSdk = 34
 
     const val versionCode = 1
     const val versionName = "1.0.0"

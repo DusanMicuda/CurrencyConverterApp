@@ -15,7 +15,7 @@ class RepositoryImpl(
     private val currencyRatesApi: CurrencyRatesApi
 ) : Repository {
 
-    override suspend fun getLatestRates(): Result<List<Currency>>  =
+    override suspend fun getLatestRates(): Result<List<Currency>> =
         currencyRatesApi.getLatestRates(GetLatestRatesReqDto()).map { response ->
             response.rates::class.memberProperties.mapNotNull { property ->
                 (property.call(response.rates) as? Double)?.let {
