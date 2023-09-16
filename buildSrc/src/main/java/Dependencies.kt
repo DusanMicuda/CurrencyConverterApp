@@ -36,6 +36,10 @@ object Dependencies {
     val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"
     val logback = "ch.qos.logback:logback-classic:${Versions.logback}"
 
+    // Koin
+    val koin = "io.insert-koin:koin-core:${Versions.koin}"
+    val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
+
     // Tests
     val jUnit = "junit:junit:${Versions.jUnit}"
     val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"

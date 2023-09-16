@@ -25,6 +25,9 @@ object Versions {
     val ktor = "2.3.1"
     val logback = "1.3.8"
 
+    // Koin
+    val koin = "3.5.0"
+
     // Tests
     val jUnit = "4.13.2"
     val jUnitExt = "1.1.5"

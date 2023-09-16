@@ -84,6 +84,10 @@ dependencies {
     implementation(Dependencies.ktorLogging)
     implementation(Dependencies.logback)
 
+    // Koin
+    implementation(Dependencies.koin)
+    implementation(Dependencies.koinAndroid)
+
     // Tests
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.jUnitExt)
