@@ -29,6 +29,9 @@ object Versions {
     // Koin
     val koin = "3.5.0"
 
+    // Third-Party
+    val KMMViewModel = "1.0.0-ALPHA-14"
+
     // Tests
     val jUnit = "4.13.2"
     val jUnitExt = "1.1.5"

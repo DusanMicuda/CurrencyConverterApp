@@ -43,6 +43,9 @@ object Dependencies {
     val koin = "io.insert-koin:koin-core:${Versions.koin}"
     val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
 
+    // Third-party
+    val KMMViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:${Versions.KMMViewModel}"
+
     // Tests
     val jUnit = "junit:junit:${Versions.jUnit}"
     val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"
