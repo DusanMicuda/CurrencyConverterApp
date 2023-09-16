@@ -14,6 +14,7 @@ object Dependencies {
     val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     val kotlinSerializationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlinSerializationPlugin}"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect"
+    val kotlinCouroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
 
     // Android
@@ -32,6 +33,7 @@ object Dependencies {
     // Ktor
     val ktorCore = "io.ktor:ktor-client-core:${Versions.ktor}"
     val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
+    val ktorIos = "io.ktor:ktor-client-darwin:${Versions.ktor}"
     val ktorContentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
     val ktorSerializationJson = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
     val ktorLogging = "io.ktor:ktor-client-logging:${Versions.ktor}"

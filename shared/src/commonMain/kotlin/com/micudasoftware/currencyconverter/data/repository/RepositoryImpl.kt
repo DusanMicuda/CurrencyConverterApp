@@ -4,7 +4,9 @@ import com.micudasoftware.currencyconverter.common.model.Result
 import com.micudasoftware.currencyconverter.data.api.CurrencyRatesApi
 import com.micudasoftware.currencyconverter.data.api.model.GetLatestRatesReqDto
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
-import kotlin.reflect.full.memberProperties
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
+import kotlinx.serialization.json.jsonObject
 
 /**
  * The implementation of [Repository].
@@ -17,11 +19,11 @@ class RepositoryImpl(
 
     override suspend fun getLatestRates(): Result<List<Currency>> =
         currencyRatesApi.getLatestRates(GetLatestRatesReqDto()).map { response ->
-            response.rates::class.memberProperties.mapNotNull { property ->
-                (property.call(response.rates) as? Double)?.let {
-                    Currency(id = property.name, rate = it)
+            val jsonElement = Json.encodeToJsonElement(response.rates)
+            jsonElement.jsonObject.mapNotNull { property ->
+                property.value.toString().toDoubleOrNull()?.let {
+                    Currency(id = property.key, rate = it)
                 }
             }
         }
-
 }

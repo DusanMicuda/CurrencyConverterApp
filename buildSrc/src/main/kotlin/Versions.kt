@@ -23,7 +23,7 @@ object Versions {
     val composeBom = "2023.05.01"
 
     // Ktor
-    val ktor = "2.3.1"
+    val ktor = "2.3.4"
     val logback = "1.3.8"
 
     // Koin

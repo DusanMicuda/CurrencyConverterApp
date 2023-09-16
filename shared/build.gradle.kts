@@ -1,5 +1,6 @@
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.compose")
 }
@@ -30,8 +31,10 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // Koin
-                implementation(Dependencies.koin)
+                //Kotlin
+                implementation(platform(Dependencies.kotlinBom))
+                implementation(Dependencies.kotlinSerialization)
+                implementation(Dependencies.kotlinCouroutinesCore)
 
                 // Compose
                 implementation(compose.runtime)
@@ -39,6 +42,28 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                // Ktor
+                implementation(Dependencies.ktorCore)
+                implementation(Dependencies.ktorContentNegotiation)
+                implementation(Dependencies.ktorSerializationJson)
+                implementation(Dependencies.ktorLogging)
+                implementation(Dependencies.logback)
+
+                // Koin
+                implementation(Dependencies.koin)
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                // Ktor
+                implementation(Dependencies.ktorAndroid)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                // Ktor
+                implementation(Dependencies.ktorIos)
             }
         }
         val commonTest by getting {
