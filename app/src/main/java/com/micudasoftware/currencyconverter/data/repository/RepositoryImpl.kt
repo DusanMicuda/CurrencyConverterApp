@@ -1,7 +1,6 @@
 package com.micudasoftware.currencyconverter.data.repository
 
 import com.micudasoftware.currencyconverter.common.model.Result
-import com.micudasoftware.currencyconverter.common.model.map
 import com.micudasoftware.currencyconverter.data.api.CurrencyRatesApi
 import com.micudasoftware.currencyconverter.data.api.model.GetLatestRatesReqDto
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
