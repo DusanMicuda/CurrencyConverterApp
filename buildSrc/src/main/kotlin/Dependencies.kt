@@ -43,8 +43,12 @@ object Dependencies {
     val koin = "io.insert-koin:koin-core:${Versions.koin}"
     val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
 
-    // Third-party
-    val KMMViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:${Versions.KMMViewModel}"
+    // Voyager
+    val voyagerNavigator = "cafe.adriel.voyager:voyager-navigator:${Versions.voyager}"
+    val voygerBottomSheet = "cafe.adriel.voyager:voyager-bottom-sheet-navigator:${Versions.voyager}"
+    val voyagerAndroidViewModel = "cafe.adriel.voyager:voyager-androidx:${Versions.voyager}"
+    val voyagerKoin = "cafe.adriel.voyager:voyager-koin:${Versions.voyager}"
+    val voyagerTransitions = "cafe.adriel.voyager:voyager-transitions:${Versions.voyager}"
 
     // Tests
     val jUnit = "junit:junit:${Versions.jUnit}"

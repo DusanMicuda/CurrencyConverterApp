@@ -1,11 +1,9 @@
 package com.micudasoftware.currencyconverter.ui.viewmodel
 
+import cafe.adriel.voyager.core.model.StateScreenModel
+import cafe.adriel.voyager.core.model.coroutineScope
 import com.micudasoftware.currencyconverter.data.repository.Repository
 import com.micudasoftware.currencyconverter.ui.screen.CurrencyRatesState
-import com.rickclephas.kmm.viewmodel.KMMViewModel
-import com.rickclephas.kmm.viewmodel.coroutineScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -14,17 +12,14 @@ import kotlinx.coroutines.launch
  *
  * @property repository The main repository.
  */
-class CurrencyRatesViewModel(
+class CurrencyRatesScreenModel(
     private val repository: Repository
-): KMMViewModel() {
-
-    private val _viewState = MutableStateFlow(CurrencyRatesState(rates = emptyList()))
-    val viewState = _viewState.asStateFlow()
+): StateScreenModel<CurrencyRatesState>(CurrencyRatesState(rates = emptyList())) {
 
     init {
-        viewModelScope.coroutineScope.launch {
+        coroutineScope.launch {
             repository.getLatestRates().onSuccess { currencyRates ->
-                _viewState.update { CurrencyRatesState(rates = currencyRates) }
+                mutableState.update { CurrencyRatesState(rates = currencyRates) }
             }
         }
     }

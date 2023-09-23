@@ -54,8 +54,10 @@ kotlin {
                 // Koin
                 implementation(Dependencies.koin)
 
-                // Third-party
-                api(Dependencies.KMMViewModel)
+                //Voyager
+                implementation(Dependencies.voyagerKoin)
+                implementation(Dependencies.voyagerNavigator)
+                implementation(Dependencies.voyagerTransitions)
             }
         }
         val androidMain by getting {
@@ -68,6 +70,9 @@ kotlin {
             dependencies {
                 // Ktor
                 implementation(Dependencies.ktorIos)
+
+                // Koin
+                implementation(Dependencies.koin)
             }
         }
         val commonTest by getting {

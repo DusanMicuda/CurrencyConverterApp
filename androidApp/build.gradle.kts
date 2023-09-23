@@ -91,6 +91,9 @@ dependencies {
     implementation(Dependencies.koin)
     implementation(Dependencies.koinAndroid)
 
+    // Voyager
+    implementation(Dependencies.voyagerNavigator)
+
     // Tests
     testImplementation(Dependencies.jUnit)
     androidTestImplementation(Dependencies.jUnitExt)

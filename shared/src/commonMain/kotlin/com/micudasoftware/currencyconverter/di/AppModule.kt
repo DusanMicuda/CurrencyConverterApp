@@ -1,11 +1,10 @@
-package com.micudasoftware.currencyconverter.app
+package com.micudasoftware.currencyconverter.di
 
 import com.micudasoftware.currencyconverter.data.api.CurrencyRatesApi
 import com.micudasoftware.currencyconverter.data.api.common.ApiCaller
 import com.micudasoftware.currencyconverter.data.repository.Repository
 import com.micudasoftware.currencyconverter.data.repository.RepositoryImpl
-import com.micudasoftware.currencyconverter.ui.viewmodel.CurrencyRatesViewModel
-import org.koin.androidx.viewmodel.dsl.viewModelOf
+import com.micudasoftware.currencyconverter.ui.viewmodel.CurrencyRatesScreenModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
@@ -15,6 +14,5 @@ val appModule = module {
     singleOf(::ApiCaller)
     factoryOf(::CurrencyRatesApi)
     factoryOf(::RepositoryImpl) bind Repository::class
-    viewModelOf(::CurrencyRatesViewModel)
-
+    factoryOf(::CurrencyRatesScreenModel)
 }

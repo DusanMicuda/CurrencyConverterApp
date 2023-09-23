@@ -11,64 +11,43 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.koin.getScreenModel
+import com.micudasoftware.currencyconverter.ui.viewmodel.CurrencyRatesScreenModel
 
 /**
  * The Simple screen to show latest currency rates.
- *
- * @param viewState The view state.
  */
-@Composable
-fun CurrencyRatesScreen(
-    viewState: State<CurrencyRatesState>,
-) {
-    val state by viewState
+object CurrencyRatesScreen : Screen {
 
-    Scaffold(modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(it)
-        ) {
-            items(state.rates) { currencyRate ->
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(text = currencyRate.id)
-                    Text(text = currencyRate.rate.toString())
+    @Composable
+    override fun Content() {
+        val screenModel = getScreenModel<CurrencyRatesScreenModel>()
+        val state by screenModel.state.collectAsState()
+
+        Scaffold(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(it)
+            ) {
+                items(state.rates) { currencyRate ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 20.dp, vertical = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(text = currencyRate.id)
+                        Text(text = currencyRate.rate.toString())
+                    }
+                    Divider(modifier = Modifier.fillMaxWidth())
                 }
-                Divider(modifier = Modifier.fillMaxWidth())
             }
         }
     }
 }
-
-///**
-// * Preview for [CurrencyRatesScreen]
-// */
-//@Preview
-//@Composable
-//private fun CurrencyRatesScreenPreview() {
-//    MaterialTheme {
-//        CurrencyRatesScreen(
-//            viewState = remember {
-//                mutableStateOf(
-//                    CurrencyRatesState(
-//                        listOf(
-//                            Currency("SDF", 1.6),
-//                            Currency("GBR", 2.7),
-//                            Currency("FGH", 3.8),
-//                            Currency("IUY", 4.9),
-//                        )
-//                    )
-//                )
-//            }
-//        )
-//    }
-//}
