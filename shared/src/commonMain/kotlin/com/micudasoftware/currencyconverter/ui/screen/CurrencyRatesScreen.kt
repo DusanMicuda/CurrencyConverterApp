@@ -29,13 +29,18 @@ object CurrencyRatesScreen : Screen {
         val screenModel = getScreenModel<CurrencyRatesScreenModel>()
         val state by screenModel.state.collectAsState()
 
+        Screen(viewState = state)
+    }
+
+    @Composable
+    fun Screen(viewState: CurrencyRatesState) {
         Scaffold(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(it)
             ) {
-                items(state.rates) { currencyRate ->
+                items(viewState.rates) { currencyRate ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()

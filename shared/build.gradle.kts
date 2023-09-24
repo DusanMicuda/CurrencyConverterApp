@@ -62,6 +62,10 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                // Compose
+                implementation(compose.uiTooling)
+                implementation(compose.preview)
+
                 // Ktor
                 implementation(Dependencies.ktorAndroid)
             }
@@ -88,5 +92,11 @@ android {
     compileSdk = Android.compileSdk
     defaultConfig {
         minSdk = Android.minSdk
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
 }
