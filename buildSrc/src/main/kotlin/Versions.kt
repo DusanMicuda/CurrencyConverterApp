@@ -32,6 +32,10 @@ object Versions {
     // Voyager
     val voyager = "1.0.0-rc07"
 
+    // Moko resources
+    val mokoResources = "0.23.0"
+    val mokoGraphics = "0.9.0"
+
     // Tests
     val jUnit = "4.13.2"
     val jUnitExt = "1.1.5"

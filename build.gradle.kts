@@ -10,6 +10,7 @@ buildscript {
         classpath(Dependencies.gradle)
         classpath(Dependencies.gradlePlugin)
         classpath(Dependencies.kotlinSerializationPlugin)
+        classpath(Dependencies.mokoResourcesGenerator)
         classpath(Dependencies.atomicfu)
     }
 }

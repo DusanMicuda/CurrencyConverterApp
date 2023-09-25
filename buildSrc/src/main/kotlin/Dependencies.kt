@@ -50,6 +50,12 @@ object Dependencies {
     val voyagerKoin = "cafe.adriel.voyager:voyager-koin:${Versions.voyager}"
     val voyagerTransitions = "cafe.adriel.voyager:voyager-transitions:${Versions.voyager}"
 
+    // Moko resources
+    val mokoResources = "dev.icerock.moko:resources:${Versions.mokoResources}"
+    val mokoResourcesCompose = "dev.icerock.moko:resources-compose:${Versions.mokoResources}"
+    val mokoGraphics = "dev.icerock.moko:graphics:${Versions.mokoGraphics}"
+    val mokoResourcesGenerator = "dev.icerock.moko:resources-generator:${Versions.mokoResources}"
+
     // Tests
     val jUnit = "junit:junit:${Versions.jUnit}"
     val jUnitExt = "androidx.test.ext:junit:${Versions.jUnitExt}"

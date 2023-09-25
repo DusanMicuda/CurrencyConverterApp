@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -24,7 +25,8 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
-            isStatic = true
+            export(Dependencies.mokoResources)
+            export(Dependencies.mokoGraphics)
         }
     }
 
@@ -58,6 +60,10 @@ kotlin {
                 implementation(Dependencies.voyagerKoin)
                 implementation(Dependencies.voyagerNavigator)
                 implementation(Dependencies.voyagerTransitions)
+
+                // Moko resources
+                api(Dependencies.mokoResources)
+                api(Dependencies.mokoResourcesCompose)
             }
         }
         val androidMain by getting {
@@ -84,6 +90,17 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        // Due to this bug, I have to declare this.
+        // https://github.com/icerockdev/moko-resources/issues/510#issuecomment-1619141070
+        val iosX64Main by getting {
+            resources.srcDirs("build/generated/moko/iosX64Main/src")
+        }
+        val iosArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosArm64Main/src")
+        }
+        val iosSimulatorArm64Main by getting {
+            resources.srcDirs("build/generated/moko/iosSimulatorArm64Main/src")
+        }
     }
 }
 
@@ -99,4 +116,14 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.composeCompiler
     }
+    // Due to this bug, I have to declare this.
+    // https://github.com/icerockdev/moko-resources/issues/510#issuecomment-1619141070
+    sourceSets {
+        getByName("main").java.srcDirs("build/generated/moko/androidMain/src")
+    }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.micudasoftware.currencyconverter"
+    multiplatformResourcesClassName = "SharedRes"
 }
