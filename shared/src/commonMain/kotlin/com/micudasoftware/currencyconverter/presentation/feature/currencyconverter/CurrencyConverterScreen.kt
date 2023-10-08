@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen
+package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -24,10 +24,11 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import com.micudasoftware.currencyconverter.SharedRes
-import com.micudasoftware.currencyconverter.ui.components.BottomNavigationBar
-import com.micudasoftware.currencyconverter.ui.components.Toolbar
-import com.micudasoftware.currencyconverter.ui.screenmodel.CurrencyConverterScreenModel
-import com.micudasoftware.currencyconverter.ui.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
+import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
+import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model.CurrencyConverterEvent
+import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model.CurrencyConverterState
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -80,7 +81,11 @@ object CurrencyConverterScreen : Screen {
                                 modifier = Modifier.fillMaxWidth(),
                                 value = viewState.currencyToConvert.value,
                                 label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
-                                onValueChange = { onEvent(CurrencyConverterEvent.UpdateCurrencyToConvertValue(it)) },
+                                onValueChange = { onEvent(
+                                    CurrencyConverterEvent.UpdateCurrencyToConvertValue(
+                                        it
+                                    )
+                                ) },
                             )
                             OutlinedTextField(
                                 modifier = Modifier

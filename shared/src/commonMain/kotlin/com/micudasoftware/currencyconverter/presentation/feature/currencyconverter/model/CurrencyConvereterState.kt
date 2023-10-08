@@ -1,6 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen
-
-import com.micudasoftware.currencyconverter.ui.screen.model.CurrencyModel
+package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model
 
 /**
  * View state for Currency Converter Screen.

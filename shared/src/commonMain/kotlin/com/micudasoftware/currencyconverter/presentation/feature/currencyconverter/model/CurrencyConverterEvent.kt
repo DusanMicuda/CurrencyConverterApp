@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen
+package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model
 
 /**
  * Events that occurs on Currency converter screen.

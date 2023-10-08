@@ -4,8 +4,8 @@ import com.micudasoftware.currencyconverter.data.api.CurrencyRatesApi
 import com.micudasoftware.currencyconverter.data.api.common.ApiCaller
 import com.micudasoftware.currencyconverter.data.repository.Repository
 import com.micudasoftware.currencyconverter.data.repository.RepositoryImpl
-import com.micudasoftware.currencyconverter.ui.screenmodel.CurrencyConverterScreenModel
-import com.micudasoftware.currencyconverter.ui.screenmodel.CurrencyRatesScreenModel
+import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.CurrencyConverterScreenModel
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.CurrencyRatesScreenModel
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind

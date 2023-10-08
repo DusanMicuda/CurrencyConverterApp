@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import cafe.adriel.voyager.navigator.Navigator
-import com.micudasoftware.currencyconverter.ui.screen.CurrencyConverterScreen
-import com.micudasoftware.currencyconverter.ui.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.CurrencyConverterScreen
 
 class MainActivity : ComponentActivity() {
 

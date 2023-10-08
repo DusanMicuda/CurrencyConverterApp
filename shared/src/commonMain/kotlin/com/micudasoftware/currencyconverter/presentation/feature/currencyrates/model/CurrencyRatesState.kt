@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen
+package com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model
 
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
 

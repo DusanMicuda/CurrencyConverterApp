@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.theme
+package com.micudasoftware.currencyconverter.presentation.common.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.components
+package com.micudasoftware.currencyconverter.presentation.common.components
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar

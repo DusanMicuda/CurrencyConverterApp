@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen.model
+package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model
 
 /**
  * Model for currency.

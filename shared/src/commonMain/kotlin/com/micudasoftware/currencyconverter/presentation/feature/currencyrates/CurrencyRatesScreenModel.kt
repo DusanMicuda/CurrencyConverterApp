@@ -1,9 +1,9 @@
-package com.micudasoftware.currencyconverter.ui.screenmodel
+package com.micudasoftware.currencyconverter.presentation.feature.currencyrates
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
 import com.micudasoftware.currencyconverter.data.repository.Repository
-import com.micudasoftware.currencyconverter.ui.screen.CurrencyRatesState
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 

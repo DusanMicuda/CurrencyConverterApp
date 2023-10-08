@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.components
+package com.micudasoftware.currencyconverter.presentation.common.components
 
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -10,7 +10,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import com.micudasoftware.currencyconverter.SharedRes
-import com.micudasoftware.currencyconverter.ui.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import dev.icerock.moko.resources.compose.painterResource
 
 /**

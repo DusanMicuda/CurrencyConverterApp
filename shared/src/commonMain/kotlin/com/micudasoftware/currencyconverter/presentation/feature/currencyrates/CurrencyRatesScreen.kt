@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.screen
+package com.micudasoftware.currencyconverter.presentation.feature.currencyrates
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
-import com.micudasoftware.currencyconverter.ui.screenmodel.CurrencyRatesScreenModel
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 
 /**
  * The Simple screen to show latest currency rates.

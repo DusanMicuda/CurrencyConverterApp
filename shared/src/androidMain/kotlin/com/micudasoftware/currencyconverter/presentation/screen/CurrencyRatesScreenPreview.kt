@@ -1,8 +1,10 @@
-package com.micudasoftware.currencyconverter.ui.screen
+package com.micudasoftware.currencyconverter.presentation.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.CurrencyRatesScreen
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 
 /**
  * Preview for [CurrencyRatesScreen].
