@@ -2,45 +2,64 @@ package com.micudasoftware.currencyconverter.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 
 @Composable
 fun CurrencyConverterTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val colors = when {
+        darkTheme -> DarkColors
+        else -> LightColors
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    val colorScheme = if (darkTheme) {
+        darkColorScheme(
+            primary = DarkColors.primary,
+            surface = DarkColors.surface,
+            background = DarkColors.transparent,
+        )
+    } else {
+        lightColorScheme(
+            primary = LightColors.primary,
+            surface = LightColors.surface,
+            background = LightColors.transparent,
+        )
+    }
+
+    CompositionLocalProvider(
+        LocalColors provides colors
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = CurrencyConverterTheme.typography,
+            content = content
+        )
+    }
+}
+
+object CurrencyConverterTheme {
+
+    /**
+     * Retrieves the current [Colors] at the call site's position in the hierarchy.
+     */
+    val colors: Colors
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalColors.current
+
+    /**
+     * Retrieves the current [Typography] at the call site's position in the hierarchy.
+     */
+    val typography: Typography
+        @Composable
+        @ReadOnlyComposable
+        get() = Typography
+
 }
