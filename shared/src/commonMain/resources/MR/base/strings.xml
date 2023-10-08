@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">Currency Converter</string>
+    <string name="menu_converter">Converter</string>
+    <string name="menu_all_currencies">All Curencies</string>
+    <string name="button_convert">Convert</string>
+    <string name="currency_label">Currency</string>
+    <string name="currency_value_label">Value</string>
 </resources>

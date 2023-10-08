@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">Prevodník Mien</string>
+    <string name="menu_converter">Prevodník</string>
+    <string name="menu_all_currencies">Všetky meny</string>
+    <string name="button_convert">Previesť</string>
+    <string name="currency_label">Mena</string>
+    <string name="currency_value_label">Hodnota</string>
 </resources>
