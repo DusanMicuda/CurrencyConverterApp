@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
-import com.micudasoftware.currencyconverter.ui.viewmodel.CurrencyRatesScreenModel
+import com.micudasoftware.currencyconverter.ui.screenmodel.CurrencyRatesScreenModel
 
 /**
  * The Simple screen to show latest currency rates.

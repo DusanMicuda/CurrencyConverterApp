@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.ui.viewmodel
+package com.micudasoftware.currencyconverter.ui.screenmodel
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
