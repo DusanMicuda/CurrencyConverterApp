@@ -6,15 +6,23 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
 import com.micudasoftware.currencyconverter.SharedRes
+import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.CurrencyConverterScreen
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.CurrencyRatesScreen
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
 /**
  * Bottom navigation bar.
+ *
+ * @param actualScreen Screen that is currently displayed.
  */
 @Composable
-fun BottomNavigationBar() {
+fun BottomNavigationBar(actualScreen: Screen) {
+    val navigator = LocalNavigator.current
+
     NavigationBar(
         tonalElevation = 8.dp
     ) {
@@ -28,8 +36,8 @@ fun BottomNavigationBar() {
                     contentDescription = null
                 )
             },
-            selected = true,
-            onClick = {}
+            selected = actualScreen == CurrencyConverterScreen,
+            onClick = { navigator?.push(CurrencyConverterScreen) }
         )
         NavigationBarItem(
             label = {
@@ -41,8 +49,8 @@ fun BottomNavigationBar() {
                     contentDescription = null
                 )
             },
-            selected = false,
-            onClick = {}
+            selected = actualScreen == CurrencyRatesScreen,
+            onClick = { navigator?.push(CurrencyRatesScreen) }
         )
     }
 }

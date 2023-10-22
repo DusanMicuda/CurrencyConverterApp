@@ -23,13 +23,11 @@ fun CurrencyConverterTheme(
         darkColorScheme(
             primary = DarkColors.primary,
             surface = DarkColors.surface,
-            background = DarkColors.transparent,
         )
     } else {
         lightColorScheme(
             primary = LightColors.primary,
             surface = LightColors.surface,
-            background = LightColors.transparent,
         )
     }
 

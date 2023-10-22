@@ -2,10 +2,11 @@
 <resources>
     <string name="app_name">Currency Converter</string>
     <string name="menu_converter">Converter</string>
-    <string name="menu_all_currencies">All Curencies</string>
+    <string name="menu_all_currencies">All Currencies</string>
     <string name="button_convert">Convert</string>
     <string name="currency_label">Currency</string>
     <string name="currency_value_label">Value</string>
+    <string name="select_base_currency">Select base Currency</string>
 
     // Currency names
     <string name="currency_afn">Afghan afghani</string>

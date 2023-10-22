@@ -34,7 +34,7 @@ fun Toolbar(
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0x00000000)
+            containerColor = CurrencyConverterTheme.colors.background.first()
         ),
         navigationIcon = {
             if (showBackButton) {

@@ -1,7 +1,6 @@
 package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,7 +41,7 @@ object CurrencyConverterScreen : Screen {
         val screenModel = getScreenModel<CurrencyConverterScreenModel>()
         val viewState by screenModel.state.collectAsState()
 
-        Screen(viewState = viewState, onEvent = { screenModel.onEvent(it)} )
+        Screen(viewState = viewState, onEvent = { screenModel.onEvent(it) })
     }
 
     @Composable
@@ -50,108 +49,105 @@ object CurrencyConverterScreen : Screen {
         viewState: CurrencyConverterState,
         onEvent: (CurrencyConverterEvent) -> Unit
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(CurrencyConverterTheme.colors.background)
-                ),
-        ) {
-            Scaffold(
-                modifier = Modifier.fillMaxSize(),
-                topBar = { Toolbar(title = stringResource(SharedRes.strings.app_name)) },
-                bottomBar = { BottomNavigationBar() }
-            ) { padding ->
-                Column(
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            topBar = { Toolbar(title = stringResource(SharedRes.strings.app_name)) },
+            bottomBar = { BottomNavigationBar(this) }
+        ) { padding ->
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(CurrencyConverterTheme.colors.background)
+                    ),
+            ) {
+                Card(
                     modifier = Modifier
-                        .padding(padding)
-                        .fillMaxSize(),
+                        .padding(top = 48.dp)
+                        .padding(horizontal = 20.dp),
+                    elevation = CardDefaults.cardElevation(10.dp)
                 ) {
-                    Card(
-                        modifier = Modifier
-                            .padding(top = 48.dp)
-                            .padding(horizontal = 20.dp),
-                        elevation = CardDefaults.cardElevation(10.dp)
+                    Column(
+                        modifier = Modifier.padding(20.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Column(
-                            modifier = Modifier.padding(20.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            OutlinedTextField(
-                                modifier = Modifier.fillMaxWidth(),
-                                value = viewState.currencyToConvert.value,
-                                label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
-                                onValueChange = { onEvent(
+                        OutlinedTextField(
+                            modifier = Modifier.fillMaxWidth(),
+                            value = viewState.currencyToConvert.value,
+                            label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
+                            onValueChange = {
+                                onEvent(
                                     CurrencyConverterEvent.UpdateCurrencyToConvertValue(
                                         it
                                     )
-                                ) },
-                            )
-                            OutlinedTextField(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 8.dp),
-                                value = viewState.currencyToConvert.currency,
-                                label = { Text(stringResource(SharedRes.strings.currency_label)) },
-                                readOnly = true,
-                                trailingIcon = {
-                                    IconButton(
-                                        onClick = { onEvent(CurrencyConverterEvent.OpenCurrencyToConvertSelector) }
-                                    ) {
-                                        Icon(
-                                            painter = painterResource(SharedRes.images.ic_arrow_drop_down),
-                                            contentDescription = null
-                                        )
-                                    }
-                                },
-                                onValueChange = {},
-                            )
-                            IconButton(
-                                modifier = Modifier.padding(top = 8.dp),
-                                onClick = { onEvent(CurrencyConverterEvent.TurnCurrencies) }
-                            ) {
-                                Icon(
-                                    painter = painterResource(SharedRes.images.ic_swap_vert),
-                                    contentDescription = null
                                 )
-                            }
-                            OutlinedTextField(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 8.dp),
-                                value = viewState.convertedCurrency.value,
-                                label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
-                                readOnly = true,
-                                onValueChange = {},
+                            },
+                        )
+                        OutlinedTextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp),
+                            value = viewState.currencyToConvert.currency,
+                            label = { Text(stringResource(SharedRes.strings.currency_label)) },
+                            readOnly = true,
+                            trailingIcon = {
+                                IconButton(
+                                    onClick = { onEvent(CurrencyConverterEvent.OpenCurrencyToConvertSelector) }
+                                ) {
+                                    Icon(
+                                        painter = painterResource(SharedRes.images.ic_arrow_drop_down),
+                                        contentDescription = null
+                                    )
+                                }
+                            },
+                            onValueChange = {},
+                        )
+                        IconButton(
+                            modifier = Modifier.padding(top = 8.dp),
+                            onClick = { onEvent(CurrencyConverterEvent.TurnCurrencies) }
+                        ) {
+                            Icon(
+                                painter = painterResource(SharedRes.images.ic_swap_vert),
+                                contentDescription = null
                             )
-                            OutlinedTextField(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(top = 8.dp),
-                                value = viewState.convertedCurrency.currency,
-                                label = { Text(stringResource(SharedRes.strings.currency_label)) },
-                                readOnly = true,
-                                trailingIcon = {
-                                    IconButton(
-                                        onClick = { onEvent(CurrencyConverterEvent.OpenConvertedCurrencySelector) }
-                                    ) {
-                                        Icon(
-                                            painter = painterResource(SharedRes.images.ic_arrow_drop_down),
-                                            contentDescription = null
-                                        )
-                                    }
-                                },
-                                onValueChange = {},
+                        }
+                        OutlinedTextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp),
+                            value = viewState.convertedCurrency.value,
+                            label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
+                            readOnly = true,
+                            onValueChange = {},
+                        )
+                        OutlinedTextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp),
+                            value = viewState.convertedCurrency.currency,
+                            label = { Text(stringResource(SharedRes.strings.currency_label)) },
+                            readOnly = true,
+                            trailingIcon = {
+                                IconButton(
+                                    onClick = { onEvent(CurrencyConverterEvent.OpenConvertedCurrencySelector) }
+                                ) {
+                                    Icon(
+                                        painter = painterResource(SharedRes.images.ic_arrow_drop_down),
+                                        contentDescription = null
+                                    )
+                                }
+                            },
+                            onValueChange = {},
+                        )
+                        Button(
+                            modifier = Modifier.padding(top = 16.dp),
+                            onClick = { onEvent(CurrencyConverterEvent.ConvertCurrency) }
+                        ) {
+                            Text(
+                                modifier = Modifier.padding(8.dp),
+                                text = stringResource(SharedRes.strings.button_convert)
                             )
-                            Button(
-                                modifier = Modifier.padding(top = 16.dp),
-                                onClick = { onEvent(CurrencyConverterEvent.ConvertCurrency) }
-                            ) {
-                                Text(
-                                    modifier = Modifier.padding(8.dp),
-                                    text = stringResource(SharedRes.strings.button_convert)
-                                )
-                            }
                         }
                     }
                 }
