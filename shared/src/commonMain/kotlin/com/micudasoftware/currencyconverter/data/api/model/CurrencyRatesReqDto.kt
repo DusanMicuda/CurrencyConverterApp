@@ -15,12 +15,10 @@ import kotlinx.serialization.json.encodeToJsonElement
  * @property source Source of data. Can be "ecb" for forex, or "crypto" for crypto currencies.
  */
 @Serializable
-data class GetLatestRatesReqDto(
-    val base: String? = null,
-    val symbols: String? = null,
-    val amount: Long? = null,
-    val places: Int? = null,
-    val source: String? = null,
+data class CurrencyRatesReqDto(
+    val from: String? = null,
+    val to: String? = null,
+    val amount: Double? = null,
 ): BaseRequest {
 
     override fun getJson(): JsonElement = Json.encodeToJsonElement(this)

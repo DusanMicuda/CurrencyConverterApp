@@ -3,6 +3,7 @@ package com.micudasoftware.currencyconverter.data.api.common
 import com.micudasoftware.currencyconverter.data.api.model.BaseRequest
 import io.ktor.http.ParametersBuilder
 import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 
 
 /**
@@ -12,7 +13,5 @@ import kotlinx.serialization.json.jsonObject
  */
 fun ParametersBuilder.appendAll(data: BaseRequest) {
     data.getJson().jsonObject
-        .mapValues { it.value.toString() }
-        .forEach { append(it.key, it.value) }
-
+        .forEach { append(it.key, it.value.jsonPrimitive.content) }
 }

@@ -3,8 +3,8 @@ package com.micudasoftware.currencyconverter.data.api
 import com.micudasoftware.currencyconverter.common.model.Result
 import com.micudasoftware.currencyconverter.data.api.common.ApiCaller
 import com.micudasoftware.currencyconverter.data.api.common.HttpRoutes
-import com.micudasoftware.currencyconverter.data.api.model.GetLatestRatesReqDto
-import com.micudasoftware.currencyconverter.data.api.model.GetLatestRatesResDto
+import com.micudasoftware.currencyconverter.data.api.model.CurrencyRatesReqDto
+import com.micudasoftware.currencyconverter.data.api.model.CurrencyRatesResDto
 
 /**
  * A class representing the currency rates API.
@@ -18,10 +18,10 @@ class CurrencyRatesApi(
     /**
      * Retrieves the latest currency rates.
      *
-     * @param request The [GetLatestRatesReqDto] containing the request parameters.
-     * @return A [Result] containing either a [GetLatestRatesResDto] with the latest rates or an [Error].
+     * @param request The [CurrencyRatesReqDto] containing the request parameters.
+     * @return A [Result] containing either a [CurrencyRatesResDto] with the latest rates or an [Error].
      */
-    suspend fun getLatestRates(request: GetLatestRatesReqDto): Result<GetLatestRatesResDto> {
+    suspend fun getLatestRates(request: CurrencyRatesReqDto): Result<CurrencyRatesResDto> {
         return apiCaller.callResult(url = HttpRoutes.LATEST_RATES, request = request)
     }
 }

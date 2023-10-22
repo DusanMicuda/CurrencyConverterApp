@@ -8,7 +8,7 @@ object HttpRoutes {
     /**
      * The base URL for the exchange rate API.
      */
-    private const val BASE_URL = "https://api.exchangerate.host"
+    private const val BASE_URL = "https://api.frankfurter.app"
 
     /**
      * The URL for accessing the latest exchange rates.
