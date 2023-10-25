@@ -21,7 +21,21 @@ interface Repository {
     /**
      * Function to get all currencies.
      *
-     * @return The Result with the [List] of [Currency].
+     * @return The [Result] with the [List] of [Currency].
      */
     suspend fun getCurrencies(): Result<List<Currency>>
+
+    /**
+     * Function to convert currency.
+     *
+     * @param from A [Currency] from which is going to be converted.
+     * @param to A [Currency] to which is going to be converted.
+     * @param amount An Amount that is going to be converted.
+     * @return The [Result] with converted currency represented as [CurrencyRate].
+     */
+    suspend fun convertCurrency(
+        from: Currency,
+        to: Currency,
+        amount: Double,
+    ): Result<CurrencyRate>
 }

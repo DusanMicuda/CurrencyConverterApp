@@ -31,4 +31,19 @@ class RepositoryImpl(
         getCurrenciesApi.getCurrencies().map { response ->
             response.toCurrencyList()
         }
+
+    override suspend fun convertCurrency(
+        from: Currency,
+        to: Currency,
+        amount: Double,
+    ): Result<CurrencyRate> =
+        currencyRatesApi.getLatestRates(
+            CurrencyRatesReqDto(
+                from = from.id,
+                to = to.id,
+                amount = amount
+            )
+        ).map { response ->
+            response.toCurrencyRateList().first()
+        }
 }

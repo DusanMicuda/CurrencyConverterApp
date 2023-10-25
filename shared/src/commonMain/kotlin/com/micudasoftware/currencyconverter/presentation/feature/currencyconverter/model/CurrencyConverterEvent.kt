@@ -1,5 +1,7 @@
 package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model
 
+import com.micudasoftware.currencyconverter.data.repository.model.Currency
+
 /**
  * Events that occurs on Currency converter screen.
  */
@@ -13,14 +15,18 @@ sealed class CurrencyConverterEvent {
     data class UpdateCurrencyToConvertValue(val value: String) : CurrencyConverterEvent()
 
     /**
-     * Event to to open selector for currency that is going to be converted.
+     * Event that occurs when currency from which is going to be converted was selected.
      */
-    data object OpenCurrencyToConvertSelector : CurrencyConverterEvent()
+    data class OnSelectFromCurrency(
+        val selectedCurrency: Currency,
+    ) : CurrencyConverterEvent()
 
     /**
-     * Event to open selector for currency to which is going to be converted.
+     * Event that occurs when currency to which is going to be converted was selected.
      */
-    data object OpenConvertedCurrencySelector : CurrencyConverterEvent()
+    data class OnSelectToCurrency(
+        val selectedCurrency: Currency,
+    ) : CurrencyConverterEvent()
 
     /**
      * Event to turn currencies with each other.
