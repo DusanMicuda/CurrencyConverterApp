@@ -18,8 +18,12 @@ class RepositoryImpl(
     private val getCurrenciesApi: GetCurrenciesApi,
 ) : Repository {
 
-    override suspend fun getLatestRates(): Result<List<CurrencyRate>> =
-        currencyRatesApi.getLatestRates(CurrencyRatesReqDto()).map { response ->
+    override suspend fun getLatestRates(
+        baseCurrency: Currency,
+    ): Result<List<CurrencyRate>> =
+        currencyRatesApi.getLatestRates(
+            CurrencyRatesReqDto(from = baseCurrency.id)
+        ).map { response ->
             response.toCurrencyRateList()
         }
 

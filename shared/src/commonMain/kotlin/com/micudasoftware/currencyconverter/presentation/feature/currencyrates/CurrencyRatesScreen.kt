@@ -29,11 +29,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
+import com.micudasoftware.currencyconverter.presentation.common.components.CurrencySelectorBottomSheet
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
 import com.micudasoftware.currencyconverter.presentation.common.getString
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
+import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesEvent
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -48,12 +51,17 @@ object CurrencyRatesScreen : Screen {
         val screenModel = getScreenModel<CurrencyRatesScreenModel>()
         val state by screenModel.state.collectAsState()
 
-        Screen(viewState = state)
+        Screen(viewState = state, onEvent = screenModel::onEvent)
     }
 
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
-    fun Screen(viewState: CurrencyRatesState) {
+    fun Screen(
+        viewState: CurrencyRatesState,
+        onEvent: (CurrencyRatesEvent) -> Unit,
+    ) {
+        val bottomSheetNavigator = LocalBottomSheetNavigator.current
+
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { Toolbar(title = stringResource(SharedRes.strings.menu_all_currencies)) },
@@ -72,7 +80,20 @@ object CurrencyRatesScreen : Screen {
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 8.dp)
-                            .clickable {  },
+                            .clickable {
+                                bottomSheetNavigator.show(
+                                    CurrencySelectorBottomSheet(
+                                        currencies = viewState.currencies,
+                                        onSelectCurrency = {
+                                            onEvent(
+                                                CurrencyRatesEvent.OnBaseCurrencySelected(
+                                                    selectedCurrency = it
+                                                )
+                                            )
+                                        }
+                                    )
+                                )
+                            },
                         colors = CardDefaults.cardColors(
                             containerColor = CurrencyConverterTheme.colors.primary
                         )
@@ -83,7 +104,10 @@ object CurrencyRatesScreen : Screen {
                                 .padding(20.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(stringResource(SharedRes.strings.select_base_currency))
+                            Text(
+                                text = viewState.baseCurrency?.name?.getString()
+                                        ?: stringResource(SharedRes.strings.select_base_currency)
+                            )
                             Icon(
                                 painter = painterResource(SharedRes.images.ic_arrow_drop_down),
                                 contentDescription = null

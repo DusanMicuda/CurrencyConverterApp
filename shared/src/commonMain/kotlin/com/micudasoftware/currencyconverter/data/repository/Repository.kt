@@ -14,7 +14,9 @@ interface Repository {
      *
      * @return The [Result] with the [List] of [CurrencyRate].
      */
-    suspend fun getLatestRates(): Result<List<CurrencyRate>>
+    suspend fun getLatestRates(
+        baseCurrency: Currency,
+    ): Result<List<CurrencyRate>>
 
     /**
      * Function to get all currencies.

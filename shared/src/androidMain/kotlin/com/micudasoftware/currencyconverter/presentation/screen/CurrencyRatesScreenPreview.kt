@@ -20,14 +20,15 @@ fun CurrencyRatesScreenPreview() {
     CurrencyConverterTheme {
         CurrencyRatesScreen.Screen(
             viewState = CurrencyRatesState(
-                listOf(
+                rates = listOf(
                     CurrencyRate("EUR", 1.23, StringDesc.Raw("Euro")),
                     CurrencyRate("USD", 3.21, StringDesc.Raw("American dollar")),
                     CurrencyRate("AFN", 2.31, StringDesc.Raw("Afghan afghani")),
                     CurrencyRate("AED", 3.12, StringDesc.Raw("United Arab Emirates dirham")),
                     CurrencyRate("CZK", 1.32, StringDesc.Raw("Czech koruna")),
                 )
-            )
+            ),
+            onEvent = {}
         )
     }
 }

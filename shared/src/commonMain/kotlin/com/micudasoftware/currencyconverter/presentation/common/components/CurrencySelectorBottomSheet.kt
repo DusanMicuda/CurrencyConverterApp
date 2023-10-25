@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.micudasoftware.currencyconverter.SharedRes
-import com.micudasoftware.currencyconverter.data.repository.model.CurrencyRate
+import com.micudasoftware.currencyconverter.data.repository.model.Currency
 import com.micudasoftware.currencyconverter.presentation.common.getString
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -35,8 +35,8 @@ import dev.icerock.moko.resources.compose.stringResource
  * @param onSelectCurrency Lambda function that is called on currency select.
  */
 class CurrencySelectorBottomSheet(
-    private val currencies: List<CurrencyRate>,
-    private val onSelectCurrency: (CurrencyRate) -> Unit
+    private val currencies: List<Currency>,
+    private val onSelectCurrency: (Currency) -> Unit
 ): Screen {
 
     @Composable
@@ -47,8 +47,8 @@ class CurrencySelectorBottomSheet(
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
     fun Screen(
-        currencies: List<CurrencyRate>,
-        onSelectCurrency: (CurrencyRate) -> Unit
+        currencies: List<Currency>,
+        onSelectCurrency: (Currency) -> Unit
     ) {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
@@ -82,17 +82,20 @@ class CurrencySelectorBottomSheet(
                 }
             }
             LazyColumn {
-                items(currencies) { currencyRate ->
+                items(currencies) { currency ->
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { onSelectCurrency(currencyRate) }
+                            .clickable {
+                                bottomSheetNavigator.hide()
+                                onSelectCurrency(currency)
+                            }
                             .padding(horizontal = 20.dp, vertical = 16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Text(
                             modifier = Modifier.basicMarquee(),
-                            text = "${currencyRate.name?.getString()} (${currencyRate.id})",
+                            text = "${currency.name?.getString()} (${currency.id})",
                             overflow = TextOverflow.Ellipsis,
                             maxLines = 1
                         )

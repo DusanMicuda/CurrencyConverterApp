@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
-import com.micudasoftware.currencyconverter.data.repository.model.CurrencyRate
+import com.micudasoftware.currencyconverter.data.repository.model.Currency
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc
@@ -26,11 +26,11 @@ fun CurrencySelectorBottomSheetPreview() {
         ) {
             CurrencySelectorBottomSheet(
                 currencies = listOf(
-                    CurrencyRate("EUR", 1.23, StringDesc.Raw("Euro")),
-                    CurrencyRate("USD", 3.21, StringDesc.Raw("American dollar")),
-                    CurrencyRate("AFN", 2.31, StringDesc.Raw("Afghan afghani")),
-                    CurrencyRate("AED", 3.12, StringDesc.Raw("United Arab Emirates dirham")),
-                    CurrencyRate("CZK", 1.32, StringDesc.Raw("Czech koruna")),
+                    Currency("EUR", StringDesc.Raw("Euro")),
+                    Currency("USD", StringDesc.Raw("American dollar")),
+                    Currency("AFN", StringDesc.Raw("Afghan afghani")),
+                    Currency("AED", StringDesc.Raw("United Arab Emirates dirham")),
+                    Currency("CZK", StringDesc.Raw("Czech koruna")),
                 ),
                 onSelectCurrency = {}
             ).Content()
