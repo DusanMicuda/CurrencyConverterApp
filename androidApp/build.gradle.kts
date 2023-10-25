@@ -78,6 +78,7 @@ dependencies {
     implementation(Dependencies.composeGraphics)
     implementation(Dependencies.composePreview)
     implementation(Dependencies.materialDesign)
+    implementation(compose.material)
 
     // Ktor
     implementation(Dependencies.ktorCore)
@@ -93,6 +94,7 @@ dependencies {
 
     // Voyager
     implementation(Dependencies.voyagerNavigator)
+    implementation(Dependencies.voygerBottomSheet)
 
     // Tests
     testImplementation(Dependencies.jUnit)
