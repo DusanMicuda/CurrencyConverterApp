@@ -1,10 +1,10 @@
-package com.micudasoftware.currencyconverter.data.api
+package com.micudasoftware.currencyconverter.data.api.currencyRatesApi
 
 import com.micudasoftware.currencyconverter.common.model.Result
 import com.micudasoftware.currencyconverter.data.api.common.ApiCaller
 import com.micudasoftware.currencyconverter.data.api.common.HttpRoutes
-import com.micudasoftware.currencyconverter.data.api.model.CurrencyRatesReqDto
-import com.micudasoftware.currencyconverter.data.api.model.CurrencyRatesResDto
+import com.micudasoftware.currencyconverter.data.api.currencyRatesApi.model.CurrencyRatesReqDto
+import com.micudasoftware.currencyconverter.data.api.currencyRatesApi.model.CurrencyRatesResDto
 
 /**
  * A class representing the currency rates API.

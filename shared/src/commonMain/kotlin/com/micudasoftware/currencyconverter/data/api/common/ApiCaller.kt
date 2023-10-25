@@ -2,7 +2,7 @@ package com.micudasoftware.currencyconverter.data.api.common
 
 import com.micudasoftware.currencyconverter.common.model.Result
 import com.micudasoftware.currencyconverter.common.model.toSuccess
-import com.micudasoftware.currencyconverter.data.api.model.BaseRequest
+import com.micudasoftware.currencyconverter.data.api.common.model.BaseRequest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -32,12 +32,14 @@ class ApiCaller {
 
     suspend inline fun <reified T : Any> callResult(
         url: String,
-        request: BaseRequest,
+        request: BaseRequest? = null,
     ): Result<T> = withContext(Dispatchers.IO){
         var response: HttpResponse? = null
         return@withContext try {
             response = client.get(url) {
-                url { parameters.appendAll(request) }
+                request?.let {
+                    url { parameters.appendAll(request) }
+                }
             }
             response.body<T>().toSuccess()
         } catch (e: Exception) {

@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.data.api.model
+package com.micudasoftware.currencyconverter.data.api.currencyRatesApi.model
 
 import kotlinx.serialization.Serializable
 

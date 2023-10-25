@@ -14,4 +14,9 @@ object HttpRoutes {
      * The URL for accessing the latest exchange rates.
      */
     const val LATEST_RATES = "$BASE_URL/latest"
+
+    /**
+     * The URL to get all currencies.
+     */
+    const val CURRENCIES = "$BASE_URL/currencies"
 }

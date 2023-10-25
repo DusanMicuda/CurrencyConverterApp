@@ -23,7 +23,8 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.micudasoftware.currencyconverter.SharedRes
-import com.micudasoftware.currencyconverter.data.repository.model.Currency
+import com.micudasoftware.currencyconverter.data.repository.model.CurrencyRate
+import com.micudasoftware.currencyconverter.presentation.common.getString
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -34,8 +35,8 @@ import dev.icerock.moko.resources.compose.stringResource
  * @param onSelectCurrency Lambda function that is called on currency select.
  */
 class CurrencySelectorBottomSheet(
-    private val currencies: List<Currency>,
-    private val onSelectCurrency: (Currency) -> Unit
+    private val currencies: List<CurrencyRate>,
+    private val onSelectCurrency: (CurrencyRate) -> Unit
 ): Screen {
 
     @Composable
@@ -46,8 +47,8 @@ class CurrencySelectorBottomSheet(
     @OptIn(ExperimentalFoundationApi::class)
     @Composable
     fun Screen(
-        currencies: List<Currency>,
-        onSelectCurrency: (Currency) -> Unit
+        currencies: List<CurrencyRate>,
+        onSelectCurrency: (CurrencyRate) -> Unit
     ) {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
@@ -91,7 +92,7 @@ class CurrencySelectorBottomSheet(
                     ) {
                         Text(
                             modifier = Modifier.basicMarquee(),
-                            text = "${currencyRate.name?.let { stringResource(it) }} (${currencyRate.id})",
+                            text = "${currencyRate.name?.getString()} (${currencyRate.id})",
                             overflow = TextOverflow.Ellipsis,
                             maxLines = 1
                         )

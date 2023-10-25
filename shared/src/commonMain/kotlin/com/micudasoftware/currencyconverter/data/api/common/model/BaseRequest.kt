@@ -1,4 +1,4 @@
-package com.micudasoftware.currencyconverter.data.api.model
+package com.micudasoftware.currencyconverter.data.api.common.model
 
 import kotlinx.serialization.json.JsonElement
 

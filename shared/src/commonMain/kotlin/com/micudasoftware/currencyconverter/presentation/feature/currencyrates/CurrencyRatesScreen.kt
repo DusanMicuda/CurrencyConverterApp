@@ -32,6 +32,7 @@ import cafe.adriel.voyager.koin.getScreenModel
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
+import com.micudasoftware.currencyconverter.presentation.common.getString
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 import dev.icerock.moko.resources.compose.painterResource
@@ -105,7 +106,7 @@ object CurrencyRatesScreen : Screen {
                                             .padding(end = 8.dp)
                                             .weight(1f)
                                             .basicMarquee(),
-                                        text = "${currencyRate.name?.let { stringResource(it) }} (${currencyRate.id})",
+                                        text = "${currencyRate.name?.getString()} (${currencyRate.id})",
                                         overflow = TextOverflow.Ellipsis,
                                         maxLines = 1
                                     )

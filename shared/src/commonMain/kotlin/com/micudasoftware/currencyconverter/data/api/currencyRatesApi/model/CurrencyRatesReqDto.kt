@@ -1,5 +1,6 @@
-package com.micudasoftware.currencyconverter.data.api.model
+package com.micudasoftware.currencyconverter.data.api.currencyRatesApi.model
 
+import com.micudasoftware.currencyconverter.data.api.common.model.BaseRequest
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement

@@ -1,6 +1,6 @@
 package com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model
 
-import com.micudasoftware.currencyconverter.data.repository.model.Currency
+import com.micudasoftware.currencyconverter.data.repository.model.CurrencyRate
 
 /**
  * Data class representing view state for Currency Rates Screen.
@@ -8,5 +8,5 @@ import com.micudasoftware.currencyconverter.data.repository.model.Currency
  * @property rates The currency rates to be shown on screen.
  */
 data class CurrencyRatesState(
-    val rates: List<Currency>
+    val rates: List<CurrencyRate>
 )

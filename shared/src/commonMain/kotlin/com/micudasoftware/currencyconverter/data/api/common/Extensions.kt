@@ -1,6 +1,6 @@
 package com.micudasoftware.currencyconverter.data.api.common
 
-import com.micudasoftware.currencyconverter.data.api.model.BaseRequest
+import com.micudasoftware.currencyconverter.data.api.common.model.BaseRequest
 import io.ktor.http.ParametersBuilder
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
