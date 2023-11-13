@@ -66,7 +66,7 @@ class CurrencyConverterScreenModel(
                         )
                     )
                 }
-            is CurrencyConverterEvent.TurnCurrencies -> {}
+            is CurrencyConverterEvent.TurnCurrencies -> turnCurrencies()
             is CurrencyConverterEvent.ConvertCurrency -> convertCurrency()
         }
     }
@@ -98,6 +98,15 @@ class CurrencyConverterScreenModel(
             }
         }.invokeOnCompletion {
             hideLoading()
+        }
+    }
+
+    private fun turnCurrencies() {
+        mutableState.update {
+            it.copy(
+                fromCurrency = it.toCurrency,
+                toCurrency = it.fromCurrency
+            )
         }
     }
 
