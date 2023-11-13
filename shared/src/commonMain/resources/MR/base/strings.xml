@@ -7,6 +7,9 @@
     <string name="currency_label">Currency</string>
     <string name="currency_value_label">Value</string>
     <string name="select_base_currency">Select base Currency</string>
+    <string name="error_dialog_title">Something went wrong</string>
+    <string name="error_dialog_message">Check your internet connection, or try it again later.</string>
+    <string name="error_dialog_button_close">Close</string>
 
     // Currency names
     <string name="currency_afn">Afghan afghani</string>

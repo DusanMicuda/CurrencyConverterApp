@@ -36,6 +36,7 @@ import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
 import com.micudasoftware.currencyconverter.presentation.common.components.CurrencySelectorBottomSheet
+import com.micudasoftware.currencyconverter.presentation.common.components.GenericDialog
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
 import com.micudasoftware.currencyconverter.presentation.common.getString
 import com.micudasoftware.currencyconverter.presentation.common.model.LoadingModel
@@ -66,8 +67,9 @@ object CurrencyRatesScreen : Screen {
     ) {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
 
-        (viewState.loadingModel as? LoadingModel.Blocking)?.let {
-            BlockingLoader()
+        when {
+            viewState.loadingModel is LoadingModel.Blocking -> BlockingLoader()
+            viewState.dialogModel != null -> GenericDialog(viewState.dialogModel)
         }
 
         Scaffold(

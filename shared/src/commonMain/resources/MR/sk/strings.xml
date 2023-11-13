@@ -7,6 +7,10 @@
     <string name="currency_label">Mena</string>
     <string name="currency_value_label">Hodnota</string>
     <string name="select_base_currency">Vyberte základnú menu</string>
+    <string name="error_dialog_title">Niečo sa pokazilo</string>
+    <string name="error_dialog_message">Skontrolujte svoje internetové pripojenie, alebo to skúste neskôr.</string>
+    <string name="error_dialog_button_close">Zatvoriť</string>
+
 
     // Currency names
     <string name="currency_afn">Afganský afgání</string>

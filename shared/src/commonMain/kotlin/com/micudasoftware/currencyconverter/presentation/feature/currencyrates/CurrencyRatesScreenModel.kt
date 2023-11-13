@@ -2,11 +2,15 @@ package com.micudasoftware.currencyconverter.presentation.feature.currencyrates
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
+import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.data.repository.Repository
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
+import com.micudasoftware.currencyconverter.presentation.common.model.ButtonModel
+import com.micudasoftware.currencyconverter.presentation.common.model.DialogModel
 import com.micudasoftware.currencyconverter.presentation.common.model.LoadingModel
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesEvent
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
+import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -24,6 +28,8 @@ class CurrencyRatesScreenModel(
         coroutineScope.launch {
             repository.getCurrencies().onSuccess { currencies ->
                 mutableState.update { CurrencyRatesState(currencies = currencies) }
+            }.onError {
+                handleError()
             }
         }.invokeOnCompletion {
             hideLoading()
@@ -54,11 +60,37 @@ class CurrencyRatesScreenModel(
         coroutineScope.launch {
             repository.getLatestRates(baseCurrency).onSuccess { currencyRates ->
                 mutableState.update { it.copy(rates = currencyRates) }
+            }.onError {
+                handleError()
             }
         }.invokeOnCompletion {
             hideLoading()
         }
     }
+
+    /**
+     * Function to show error dialog.
+     */
+    private fun handleError() {
+        mutableState.update {
+            it.copy(
+                dialogModel = DialogModel(
+                    title = SharedRes.strings.error_dialog_title.desc(),
+                    message = SharedRes.strings.error_dialog_message.desc(),
+                    positiveButton = ButtonModel(
+                        text = SharedRes.strings.error_dialog_button_close.desc(),
+                        onClick = ::closeDialog
+                    ),
+                    onDismiss = ::closeDialog
+                )
+            )
+        }
+    }
+
+    /**
+     * Function to close dialogs.
+     */
+    private fun closeDialog() = mutableState.update { it.copy(dialogModel = null) }
 
     /**
      * Function to show loading.
