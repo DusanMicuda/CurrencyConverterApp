@@ -45,6 +45,7 @@ object Dependencies {
 
     // Voyager
     val voyagerNavigator = "cafe.adriel.voyager:voyager-navigator:${Versions.voyager}"
+    val voyagerTab = "cafe.adriel.voyager:voyager-tab-navigator:${Versions.voyager}"
     val voygerBottomSheet = "cafe.adriel.voyager:voyager-bottom-sheet-navigator:${Versions.voyager}"
     val voyagerAndroidViewModel = "cafe.adriel.voyager:voyager-androidx:${Versions.voyager}"
     val voyagerKoin = "cafe.adriel.voyager:voyager-koin:${Versions.voyager}"

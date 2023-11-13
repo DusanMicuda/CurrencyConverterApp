@@ -23,15 +23,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
@@ -47,9 +49,22 @@ import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
 /**
- * The Simple screen to show latest currency rates.
+ * The screen to show latest currency rates.
  */
-object CurrencyRatesScreen : Screen {
+class CurrencyRatesScreen : Tab {
+
+    override val options: TabOptions
+        @Composable
+        get() {
+            val title = stringResource(SharedRes.strings.menu_all_currencies)
+
+            return remember {
+                TabOptions(
+                    index = 1U,
+                    title = title,
+                )
+            }
+        }
 
     @Composable
     override fun Content() {
@@ -75,7 +90,7 @@ object CurrencyRatesScreen : Screen {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { Toolbar(title = stringResource(SharedRes.strings.menu_all_currencies)) },
-            bottomBar = { BottomNavigationBar(this) }
+            bottomBar = { BottomNavigationBar() }
         ) { padding ->
             Box(
                 modifier = Modifier

@@ -19,14 +19,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
@@ -44,7 +46,20 @@ import dev.icerock.moko.resources.compose.stringResource
 /**
  * Screen for converting currencies.
  */
-object CurrencyConverterScreen : Screen {
+class CurrencyConverterScreen : Tab {
+
+
+    override val options: TabOptions
+        @Composable
+        get() {
+            val title = stringResource(SharedRes.strings.app_name)
+            return remember {
+                TabOptions(
+                    index = 0U,
+                    title = title,
+                )
+            }
+        }
 
     @Composable
     override fun Content() {
@@ -69,7 +84,7 @@ object CurrencyConverterScreen : Screen {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { Toolbar(title = stringResource(SharedRes.strings.app_name)) },
-            bottomBar = { BottomNavigationBar(this) }
+            bottomBar = { BottomNavigationBar() }
         ) { padding ->
             Column(
                 modifier = Modifier

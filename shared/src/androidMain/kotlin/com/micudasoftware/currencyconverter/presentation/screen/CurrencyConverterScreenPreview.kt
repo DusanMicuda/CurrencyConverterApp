@@ -15,7 +15,7 @@ import com.micudasoftware.currencyconverter.presentation.feature.currencyconvert
 @Composable
 fun CurrencyConverterScreenPreview() {
     CurrencyConverterTheme {
-        CurrencyConverterScreen.Screen(
+        CurrencyConverterScreen().Screen(
             viewState = CurrencyConverterState(),
             onEvent = {}
         )

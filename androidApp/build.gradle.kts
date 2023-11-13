@@ -94,6 +94,7 @@ dependencies {
 
     // Voyager
     implementation(Dependencies.voyagerNavigator)
+    implementation(Dependencies.voyagerTab)
     implementation(Dependencies.voygerBottomSheet)
 
     // Tests

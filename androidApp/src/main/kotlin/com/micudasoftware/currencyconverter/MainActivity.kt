@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.CurrencyConverterScreen
 
@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
                 BottomSheetNavigator(
                     sheetShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
                 ) {
-                    Navigator(CurrencyConverterScreen)
+                    TabNavigator(CurrencyConverterScreen())
                 }
             }
         }

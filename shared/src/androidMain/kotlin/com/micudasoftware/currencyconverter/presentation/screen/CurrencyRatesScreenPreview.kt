@@ -18,7 +18,7 @@ import dev.icerock.moko.resources.desc.StringDesc
 @Composable
 fun CurrencyRatesScreenPreview() {
     CurrencyConverterTheme {
-        CurrencyRatesScreen.Screen(
+        CurrencyRatesScreen().Screen(
             viewState = CurrencyRatesState(
                 rates = listOf(
                     CurrencyRate("EUR", 1.23, StringDesc.Raw("Euro")),

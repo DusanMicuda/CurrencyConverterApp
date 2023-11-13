@@ -59,6 +59,7 @@ kotlin {
                 //Voyager
                 implementation(Dependencies.voyagerKoin)
                 implementation(Dependencies.voyagerNavigator)
+                implementation(Dependencies.voyagerTab)
                 implementation(Dependencies.voygerBottomSheet)
                 implementation(Dependencies.voyagerTransitions)
 
