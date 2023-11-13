@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -22,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
@@ -31,10 +33,12 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.micudasoftware.currencyconverter.SharedRes
+import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
 import com.micudasoftware.currencyconverter.presentation.common.components.CurrencySelectorBottomSheet
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
 import com.micudasoftware.currencyconverter.presentation.common.getString
+import com.micudasoftware.currencyconverter.presentation.common.model.LoadingModel
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesEvent
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
@@ -61,6 +65,10 @@ object CurrencyRatesScreen : Screen {
         onEvent: (CurrencyRatesEvent) -> Unit,
     ) {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
+
+        (viewState.loadingModel as? LoadingModel.Blocking)?.let {
+            BlockingLoader()
+        }
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -115,31 +123,40 @@ object CurrencyRatesScreen : Screen {
                         }
                     }
                     Card(modifier = Modifier.padding(vertical = 20.dp)) {
-                        LazyColumn(
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            items(viewState.rates) { currencyRate ->
-                                Row(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(horizontal = 20.dp, vertical = 8.dp),
-                                    horizontalArrangement = Arrangement.SpaceBetween
-                                ) {
-                                    Text(
+                        if (viewState.loadingModel is LoadingModel.Local) {
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.align(Alignment.Center),
+                                    color = CurrencyConverterTheme.colors.primary
+                                )
+                            }
+                        } else {
+                            LazyColumn(
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                items(viewState.rates) { currencyRate ->
+                                    Row(
                                         modifier = Modifier
-                                            .padding(end = 8.dp)
-                                            .weight(1f)
-                                            .basicMarquee(),
-                                        text = "${currencyRate.name?.getString()} (${currencyRate.id})",
-                                        overflow = TextOverflow.Ellipsis,
-                                        maxLines = 1
-                                    )
-                                    Text(
-                                        text = currencyRate.rate.toString(),
-                                        fontWeight = FontWeight.Bold
-                                    )
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 20.dp, vertical = 8.dp),
+                                        horizontalArrangement = Arrangement.SpaceBetween
+                                    ) {
+                                        Text(
+                                            modifier = Modifier
+                                                .padding(end = 8.dp)
+                                                .weight(1f)
+                                                .basicMarquee(),
+                                            text = "${currencyRate.name?.getString()} (${currencyRate.id})",
+                                            overflow = TextOverflow.Ellipsis,
+                                            maxLines = 1
+                                        )
+                                        Text(
+                                            text = currencyRate.rate.toString(),
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                    Divider(modifier = Modifier.fillMaxWidth())
                                 }
-                                Divider(modifier = Modifier.fillMaxWidth())
                             }
                         }
                     }

@@ -4,6 +4,7 @@ import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
 import com.micudasoftware.currencyconverter.data.repository.Repository
 import com.micudasoftware.currencyconverter.data.repository.model.Currency
+import com.micudasoftware.currencyconverter.presentation.common.model.LoadingModel
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesEvent
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.model.CurrencyRatesState
 import kotlinx.coroutines.flow.update
@@ -19,10 +20,13 @@ class CurrencyRatesScreenModel(
 ): StateScreenModel<CurrencyRatesState>(CurrencyRatesState()) {
 
     init {
+        showLoading(isBlocking = true)
         coroutineScope.launch {
             repository.getCurrencies().onSuccess { currencies ->
                 mutableState.update { CurrencyRatesState(currencies = currencies) }
             }
+        }.invokeOnCompletion {
+            hideLoading()
         }
     }
 
@@ -46,10 +50,34 @@ class CurrencyRatesScreenModel(
      * @param baseCurrency A Currency that was selected as base currency to get currency rates.
      */
     private fun getCurrencyRates(baseCurrency: Currency) {
+        showLoading()
         coroutineScope.launch {
             repository.getLatestRates(baseCurrency).onSuccess { currencyRates ->
                 mutableState.update { it.copy(rates = currencyRates) }
             }
+        }.invokeOnCompletion {
+            hideLoading()
         }
     }
+
+    /**
+     * Function to show loading.
+     *
+     * @param isBlocking Flag indicates if loading should be [LoadingModel.Blocking].
+     */
+    private fun showLoading(isBlocking: Boolean = false) =
+        mutableState.update {
+            it.copy(
+                loadingModel = if (isBlocking) {
+                    LoadingModel.Blocking
+                } else {
+                    LoadingModel.Local
+                }
+            )
+        }
+
+    /**
+     * Function to hide loading.
+     */
+    private fun hideLoading() = mutableState.update { it.copy(loadingModel = null) }
 }
