@@ -6,9 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -20,15 +22,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.micudasoftware.currencyconverter.SharedRes
+import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
 import com.micudasoftware.currencyconverter.presentation.common.components.CurrencySelectorBottomSheet
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
 import com.micudasoftware.currencyconverter.presentation.common.getString
+import com.micudasoftware.currencyconverter.presentation.common.model.LoadingModel
 import com.micudasoftware.currencyconverter.presentation.common.theme.CurrencyConverterTheme
 import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model.CurrencyConverterEvent
 import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model.CurrencyConverterState
@@ -54,6 +59,10 @@ object CurrencyConverterScreen : Screen {
         onEvent: (CurrencyConverterEvent) -> Unit
     ) {
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
+
+        (viewState.loadingModel as? LoadingModel.Blocking)?.let {
+            BlockingLoader()
+        }
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -187,10 +196,19 @@ object CurrencyConverterScreen : Screen {
                             modifier = Modifier.padding(top = 16.dp),
                             onClick = { onEvent(CurrencyConverterEvent.ConvertCurrency) }
                         ) {
-                            Text(
-                                modifier = Modifier.padding(8.dp),
-                                text = stringResource(SharedRes.strings.button_convert)
-                            )
+                            if (viewState.loadingModel is LoadingModel.Local) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier
+                                        .padding(5.dp)
+                                        .size(24.dp),
+                                    color = Color.White
+                                )
+                            } else {
+                                Text(
+                                    modifier = Modifier.padding(8.dp),
+                                    text = stringResource(SharedRes.strings.button_convert)
+                                )
+                            }
                         }
                     }
                 }
