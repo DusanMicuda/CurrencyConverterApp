@@ -1,7 +1,6 @@
 package com.micudasoftware.currencyconverter.presentation.feature.currencyconverter
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -108,6 +107,10 @@ class CurrencyConverterScreen : Tab {
                             modifier = Modifier.fillMaxWidth(),
                             value = viewState.fromCurrency.value,
                             label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
+                            supportingText = {
+                                viewState.fromCurrency.valueError?.getString()?.let { Text(it) }
+                            },
+                            isError = viewState.fromCurrency.valueError != null,
                             onValueChange = {
                                 onEvent(
                                     CurrencyConverterEvent.UpdateCurrencyToConvertValue(
@@ -122,7 +125,12 @@ class CurrencyConverterScreen : Tab {
                                 .padding(top = 8.dp),
                             value = viewState.fromCurrency.currency?.name?.getString() ?: "",
                             label = { Text(stringResource(SharedRes.strings.currency_label)) },
+                            supportingText = {
+                                viewState.fromCurrency.currencyError?.getString()?.let { Text(it) }
+                            },
+                            isError = viewState.fromCurrency.currencyError != null,
                             readOnly = true,
+                            enabled = false,
                             trailingIcon = {
                                 IconButton(
                                     onClick = {
@@ -168,22 +176,13 @@ class CurrencyConverterScreen : Tab {
                         OutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .clickable {
-                                    bottomSheetNavigator.show(
-                                        CurrencySelectorBottomSheet(
-                                            currencies = viewState.currencies,
-                                            onSelectCurrency = {
-                                                onEvent(
-                                                    CurrencyConverterEvent
-                                                        .OnSelectToCurrency(it)
-                                                )
-                                            }
-                                        )
-                                    )
-                                }
                                 .padding(top = 8.dp),
                             value = viewState.toCurrency.currency?.name?.getString() ?: "",
                             label = { Text(stringResource(SharedRes.strings.currency_label)) },
+                            supportingText = {
+                                viewState.toCurrency.currencyError?.getString()?.let { Text(it) }
+                            },
+                            isError = viewState.toCurrency.currencyError != null,
                             readOnly = true,
                             trailingIcon = {
                                 IconButton(
@@ -211,6 +210,7 @@ class CurrencyConverterScreen : Tab {
                         )
                         Button(
                             modifier = Modifier.padding(top = 16.dp),
+                            enabled = viewState.isFormValid,
                             onClick = { onEvent(CurrencyConverterEvent.ConvertCurrency) }
                         ) {
                             if (viewState.loadingModel is LoadingModel.Local) {

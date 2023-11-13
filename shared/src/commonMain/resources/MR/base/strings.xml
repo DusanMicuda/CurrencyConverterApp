@@ -10,6 +10,8 @@
     <string name="error_dialog_title">Something went wrong</string>
     <string name="error_dialog_message">Check your internet connection, or try it again later.</string>
     <string name="error_dialog_button_close">Close</string>
+    <string name="wrong_value_error">Wrong value</string>
+    <string name="wrong_currency_error">Cannot select same currencies</string>
 
     // Currency names
     <string name="currency_afn">Afghan afghani</string>

@@ -10,6 +10,8 @@
     <string name="error_dialog_title">Niečo sa pokazilo</string>
     <string name="error_dialog_message">Skontrolujte svoje internetové pripojenie, alebo to skúste neskôr.</string>
     <string name="error_dialog_button_close">Zatvoriť</string>
+    <string name="wrong_value_error">Nesprávna hodnota</string>
+    <string name="wrong_currency_error">Nie je možné zvoliť rovnaké meny</string>
 
 
     // Currency names

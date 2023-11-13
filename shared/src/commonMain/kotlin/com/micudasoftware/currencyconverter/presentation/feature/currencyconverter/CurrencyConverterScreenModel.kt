@@ -47,22 +47,40 @@ class CurrencyConverterScreenModel(
                     it.copy(
                         fromCurrency = it.fromCurrency.copy(
                             value = event.value
-                        )
+                        ).validateValue()
                     )
                 }
             is CurrencyConverterEvent.OnSelectFromCurrency ->
                 mutableState.update {
                     it.copy(
                         fromCurrency = it.fromCurrency.copy(
-                            currency = event.selectedCurrency
+                            currency = event.selectedCurrency,
+                            currencyError = SharedRes.strings.wrong_currency_error.desc().takeIf {
+                                state.value.toCurrency.currency == event.selectedCurrency
+                            }
+                        ),
+                        toCurrency = it.toCurrency.copy(
+                            value = "",
+                            currencyError = SharedRes.strings.wrong_currency_error.desc().takeIf {
+                                event.selectedCurrency == state.value.toCurrency.currency
+                            }
                         )
                     )
                 }
             is CurrencyConverterEvent.OnSelectToCurrency ->
                 mutableState.update {
                     it.copy(
+                        fromCurrency = it.fromCurrency.copy(
+                            currencyError = SharedRes.strings.wrong_currency_error.desc().takeIf {
+                                event.selectedCurrency == state.value.fromCurrency.currency
+                            }
+                        ),
                         toCurrency = it.toCurrency.copy(
-                            currency = event.selectedCurrency
+                            value = "",
+                            currency = event.selectedCurrency,
+                            currencyError = SharedRes.strings.wrong_currency_error.desc().takeIf {
+                                state.value.fromCurrency.currency == event.selectedCurrency
+                            }
                         )
                     )
                 }

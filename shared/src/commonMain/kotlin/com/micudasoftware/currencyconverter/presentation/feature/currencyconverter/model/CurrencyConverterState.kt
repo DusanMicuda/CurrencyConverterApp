@@ -12,6 +12,7 @@ import com.micudasoftware.currencyconverter.presentation.common.model.LoadingMod
  * @property toCurrency Converted currency.
  * @property loadingModel The [LoadingModel] to show/hide loadings.
  * @property dialogModel The [DialogModel] to show dialogs.
+ * @property isFormValid Flag represents if form is valid or not.
  */
 data class CurrencyConverterState(
     val currencies: List<Currency> = emptyList(),
@@ -19,4 +20,6 @@ data class CurrencyConverterState(
     val toCurrency: CurrencyModel = CurrencyModel(),
     val loadingModel: LoadingModel? = null,
     val dialogModel: DialogModel? = null,
-)
+) {
+    val isFormValid = fromCurrency.isValid && toCurrency.currency != null && loadingModel == null
+}
