@@ -12,7 +12,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +31,7 @@ import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
 import com.micudasoftware.currencyconverter.presentation.common.components.BottomNavigationBar
 import com.micudasoftware.currencyconverter.presentation.common.components.CurrencySelectorBottomSheet
+import com.micudasoftware.currencyconverter.presentation.common.components.CustomOutlinedTextField
 import com.micudasoftware.currencyconverter.presentation.common.components.GenericDialog
 import com.micudasoftware.currencyconverter.presentation.common.components.Toolbar
 import com.micudasoftware.currencyconverter.presentation.common.getString
@@ -41,6 +41,7 @@ import com.micudasoftware.currencyconverter.presentation.feature.currencyconvert
 import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.model.CurrencyConverterState
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
+import dev.icerock.moko.resources.desc.desc
 
 /**
  * Screen for converting currencies.
@@ -103,14 +104,11 @@ class CurrencyConverterScreen : Tab {
                         modifier = Modifier.padding(20.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        OutlinedTextField(
+                        CustomOutlinedTextField(
                             modifier = Modifier.fillMaxWidth(),
                             value = viewState.fromCurrency.value,
-                            label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
-                            supportingText = {
-                                viewState.fromCurrency.valueError?.getString()?.let { Text(it) }
-                            },
-                            isError = viewState.fromCurrency.valueError != null,
+                            label = SharedRes.strings.currency_value_label.desc(),
+                            errorText = viewState.fromCurrency.valueError,
                             onValueChange = {
                                 onEvent(
                                     CurrencyConverterEvent.UpdateCurrencyToConvertValue(
@@ -119,39 +117,26 @@ class CurrencyConverterScreen : Tab {
                                 )
                             },
                         )
-                        OutlinedTextField(
+                        CustomOutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 8.dp),
                             value = viewState.fromCurrency.currency?.name?.getString() ?: "",
-                            label = { Text(stringResource(SharedRes.strings.currency_label)) },
-                            supportingText = {
-                                viewState.fromCurrency.currencyError?.getString()?.let { Text(it) }
-                            },
-                            isError = viewState.fromCurrency.currencyError != null,
+                            label = SharedRes.strings.currency_label.desc(),
+                            errorText = viewState.fromCurrency.currencyError,
                             readOnly = true,
-                            enabled = false,
-                            trailingIcon = {
-                                IconButton(
-                                    onClick = {
-                                        bottomSheetNavigator.show(
-                                            CurrencySelectorBottomSheet(
-                                                currencies = viewState.currencies,
-                                                onSelectCurrency = {
-                                                    onEvent(
-                                                        CurrencyConverterEvent
-                                                            .OnSelectFromCurrency(it)
-                                                    )
-                                                }
+                            onClick = {
+                                bottomSheetNavigator.show(
+                                    CurrencySelectorBottomSheet(
+                                        currencies = viewState.currencies,
+                                        onSelectCurrency = {
+                                            onEvent(
+                                                CurrencyConverterEvent
+                                                    .OnSelectFromCurrency(it)
                                             )
-                                        )
-                                    }
-                                ) {
-                                    Icon(
-                                        painter = painterResource(SharedRes.images.ic_arrow_drop_down),
-                                        contentDescription = null
+                                        }
                                     )
-                                }
+                                )
                             },
                             onValueChange = {},
                         )
@@ -164,47 +149,35 @@ class CurrencyConverterScreen : Tab {
                                 contentDescription = null
                             )
                         }
-                        OutlinedTextField(
+                        CustomOutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 8.dp),
                             value = viewState.toCurrency.value,
-                            label = { Text(stringResource(SharedRes.strings.currency_value_label)) },
+                            label = SharedRes.strings.currency_value_label.desc(),
                             readOnly = true,
                             onValueChange = {},
                         )
-                        OutlinedTextField(
+                        CustomOutlinedTextField(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 8.dp),
                             value = viewState.toCurrency.currency?.name?.getString() ?: "",
-                            label = { Text(stringResource(SharedRes.strings.currency_label)) },
-                            supportingText = {
-                                viewState.toCurrency.currencyError?.getString()?.let { Text(it) }
-                            },
-                            isError = viewState.toCurrency.currencyError != null,
+                            label = SharedRes.strings.currency_label.desc(),
+                            errorText = viewState.toCurrency.currencyError,
                             readOnly = true,
-                            trailingIcon = {
-                                IconButton(
-                                    onClick = {
-                                        bottomSheetNavigator.show(
-                                            CurrencySelectorBottomSheet(
-                                                currencies = viewState.currencies,
-                                                onSelectCurrency = {
-                                                    onEvent(
-                                                        CurrencyConverterEvent
-                                                            .OnSelectToCurrency(it)
-                                                    )
-                                                }
+                            onClick = {
+                                bottomSheetNavigator.show(
+                                    CurrencySelectorBottomSheet(
+                                        currencies = viewState.currencies,
+                                        onSelectCurrency = {
+                                            onEvent(
+                                                CurrencyConverterEvent
+                                                    .OnSelectToCurrency(it)
                                             )
-                                        )
-                                    }
-                                ) {
-                                    Icon(
-                                        painter = painterResource(SharedRes.images.ic_arrow_drop_down),
-                                        contentDescription = null
+                                        }
                                     )
-                                }
+                                )
                             },
                             onValueChange = {},
                         )
