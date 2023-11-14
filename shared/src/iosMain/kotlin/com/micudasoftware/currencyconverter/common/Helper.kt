@@ -15,7 +15,7 @@ fun MainViewController() = ComposeUIViewController {
     BottomSheetNavigator(
         sheetShape = RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp)
     ) {
-        TabNavigator(CurrencyConverterScreen)
+        TabNavigator(CurrencyConverterScreen())
     }
 }
 
