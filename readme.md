@@ -61,5 +61,5 @@ images for both Android and iOS platforms.
 ## Conclusion
 
 I hope you enjoyed this app and found it useful. I would love to hear your feedback, suggestions,
-or questions. You can contact me at micudasoftware@gmail.com or follow me on [LinkedIn](www.linkedin.com/in/dušan-mičuda-33b755212).
+or questions. You can contact me at micudasoftware@gmail.com or follow me on [LinkedIn](https://www.linkedin.com/in/dušan-mičuda-33b755212).
 You can also check out my other projects.
