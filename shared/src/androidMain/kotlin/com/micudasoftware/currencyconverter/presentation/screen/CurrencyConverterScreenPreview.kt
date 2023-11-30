@@ -17,7 +17,9 @@ fun CurrencyConverterScreenPreview() {
     CurrencyConverterTheme {
         CurrencyConverterScreen().Screen(
             viewState = CurrencyConverterState(),
-            onEvent = {}
+            onEvent = {},
+            bottomSheetNavigator = null,
+            tabNavigator = null
         )
     }
 }

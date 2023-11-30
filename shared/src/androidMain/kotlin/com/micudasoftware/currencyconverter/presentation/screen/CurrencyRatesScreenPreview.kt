@@ -28,7 +28,9 @@ fun CurrencyRatesScreenPreview() {
                     CurrencyRate("CZK", 1.32, StringDesc.Raw("Czech koruna")),
                 )
             ),
-            onEvent = {}
+            onEvent = {},
+            bottomSheetNavigator = null,
+            tabNavigator = null
         )
     }
 }

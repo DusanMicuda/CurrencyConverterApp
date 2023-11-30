@@ -31,8 +31,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
@@ -71,7 +74,12 @@ class CurrencyRatesScreen : Tab {
         val screenModel = getScreenModel<CurrencyRatesScreenModel>()
         val state by screenModel.state.collectAsState()
 
-        Screen(viewState = state, onEvent = screenModel::onEvent)
+        Screen(
+            viewState = state,
+            onEvent = screenModel::onEvent,
+            bottomSheetNavigator = LocalBottomSheetNavigator.current,
+            tabNavigator = LocalTabNavigator.current
+        )
     }
 
     @OptIn(ExperimentalFoundationApi::class)
@@ -79,9 +87,9 @@ class CurrencyRatesScreen : Tab {
     fun Screen(
         viewState: CurrencyRatesState,
         onEvent: (CurrencyRatesEvent) -> Unit,
+        bottomSheetNavigator : BottomSheetNavigator?,
+        tabNavigator: TabNavigator?,
     ) {
-        val bottomSheetNavigator = LocalBottomSheetNavigator.current
-
         when {
             viewState.loadingModel is LoadingModel.Blocking -> BlockingLoader()
             viewState.dialogModel != null -> GenericDialog(viewState.dialogModel)
@@ -90,7 +98,7 @@ class CurrencyRatesScreen : Tab {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { Toolbar(title = stringResource(SharedRes.strings.menu_all_currencies)) },
-            bottomBar = { BottomNavigationBar() }
+            bottomBar = { BottomNavigationBar(tabNavigator = tabNavigator) }
         ) { padding ->
             Box(
                 modifier = Modifier
@@ -106,7 +114,7 @@ class CurrencyRatesScreen : Tab {
                             .fillMaxWidth()
                             .padding(top = 8.dp)
                             .clickable {
-                                bottomSheetNavigator.show(
+                                bottomSheetNavigator?.show(
                                     CurrencySelectorBottomSheet(
                                         currencies = viewState.currencies,
                                         onSelectCurrency = {

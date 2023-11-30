@@ -24,8 +24,11 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.common.components.BlockingLoader
@@ -66,16 +69,21 @@ class CurrencyConverterScreen : Tab {
         val screenModel = getScreenModel<CurrencyConverterScreenModel>()
         val viewState by screenModel.state.collectAsState()
 
-        Screen(viewState = viewState, onEvent = { screenModel.onEvent(it) })
+        Screen(
+            viewState = viewState,
+            onEvent = screenModel::onEvent,
+            bottomSheetNavigator = LocalBottomSheetNavigator.current,
+            tabNavigator = LocalTabNavigator.current
+        )
     }
 
     @Composable
     fun Screen(
         viewState: CurrencyConverterState,
-        onEvent: (CurrencyConverterEvent) -> Unit
+        onEvent: (CurrencyConverterEvent) -> Unit,
+        bottomSheetNavigator : BottomSheetNavigator?,
+        tabNavigator: TabNavigator?,
     ) {
-        val bottomSheetNavigator = LocalBottomSheetNavigator.current
-
         when {
             viewState.loadingModel is LoadingModel.Blocking -> BlockingLoader()
             viewState.dialogModel != null -> GenericDialog(viewState.dialogModel)
@@ -84,7 +92,7 @@ class CurrencyConverterScreen : Tab {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = { Toolbar(title = stringResource(SharedRes.strings.app_name)) },
-            bottomBar = { BottomNavigationBar() }
+            bottomBar = { BottomNavigationBar(tabNavigator = tabNavigator) }
         ) { padding ->
             Column(
                 modifier = Modifier
@@ -126,7 +134,7 @@ class CurrencyConverterScreen : Tab {
                             errorText = viewState.fromCurrency.currencyError,
                             readOnly = true,
                             onClick = {
-                                bottomSheetNavigator.show(
+                                bottomSheetNavigator?.show(
                                     CurrencySelectorBottomSheet(
                                         currencies = viewState.currencies,
                                         onSelectCurrency = {
@@ -167,7 +175,7 @@ class CurrencyConverterScreen : Tab {
                             errorText = viewState.toCurrency.currencyError,
                             readOnly = true,
                             onClick = {
-                                bottomSheetNavigator.show(
+                                bottomSheetNavigator?.show(
                                     CurrencySelectorBottomSheet(
                                         currencies = viewState.currencies,
                                         onSelectCurrency = {

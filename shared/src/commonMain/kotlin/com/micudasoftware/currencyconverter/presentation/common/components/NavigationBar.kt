@@ -6,7 +6,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.micudasoftware.currencyconverter.SharedRes
 import com.micudasoftware.currencyconverter.presentation.feature.currencyconverter.CurrencyConverterScreen
 import com.micudasoftware.currencyconverter.presentation.feature.currencyrates.CurrencyRatesScreen
@@ -15,11 +15,13 @@ import dev.icerock.moko.resources.compose.stringResource
 
 /**
  * Bottom navigation bar.
+ *
+ * @param tabNavigator [TabNavigator] used to navigate between tabs.
  */
 @Composable
-fun BottomNavigationBar() {
-    val navigator = LocalTabNavigator.current
-
+fun BottomNavigationBar(
+    tabNavigator: TabNavigator?
+) {
     NavigationBar(
         tonalElevation = 8.dp
     ) {
@@ -33,8 +35,8 @@ fun BottomNavigationBar() {
                     contentDescription = null
                 )
             },
-            selected = navigator.current is CurrencyConverterScreen,
-            onClick = { navigator.current = CurrencyConverterScreen() }
+            selected = tabNavigator?.current is CurrencyConverterScreen,
+            onClick = { tabNavigator?.current = CurrencyConverterScreen() }
         )
         NavigationBarItem(
             label = {
@@ -46,8 +48,8 @@ fun BottomNavigationBar() {
                     contentDescription = null
                 )
             },
-            selected = navigator.current is CurrencyRatesScreen,
-            onClick = { navigator.current = CurrencyRatesScreen() }
+            selected = tabNavigator?.current is CurrencyRatesScreen,
+            onClick = { tabNavigator?.current = CurrencyRatesScreen() }
         )
     }
 }
